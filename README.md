@@ -20,11 +20,6 @@ $ macaca server
 $ python tests/macaca-desktop-sample.test.py
 ```
 
-## App Source Code
-
-- [ios-app-bootstrap](//github.com/xudafeng/ios-app-bootstrap)
-- [android-app-bootstrap](//github.com/xudafeng/android-app-bootstrap)
-
 ## License
 
 The MIT License (MIT)
