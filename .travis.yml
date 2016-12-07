@@ -1,0 +1,19 @@
+language: python
+sudo: false
+python:
+  - "3.5"
+addons:
+  apt:
+    packages:
+      - xvfb
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1366x768x24 > /dev/null 2>&1 &
+  - nvm install v5
+  - nvm use v5
+  - npm install -g macaca-cli macaca-electron
+  - pip3 install -r requirements.txt
+script:
+  - macaca server &
+  - sleep 5
+  - python macaca-desktop-sample.test.py
