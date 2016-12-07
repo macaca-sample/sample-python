@@ -7,7 +7,7 @@ desired_caps = {
     'platformName': 'iOS',
     'platformVersion': '10.0',
     'deviceName': 'iPhone 5s',
-    'app': './app/ios-app-bootstrap.zip',
+    'app': 'https://npmcdn.com/ios-app-bootstrap@latest/build/ios-app-bootstrap.zip',
 }
 
 server_url = {
