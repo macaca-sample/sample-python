@@ -55,13 +55,90 @@ class MacacaTest(unittest.TestCase):
 
         self.driver             \
             .element_by_name('list') \
-            .click() \
-            .swipe(200, 420, 200, 10, 50)
+            .click()
 
-    def test_03_webview(self):
+    def test_03_gesture(self):
         self.driver \
-            .swipe(200, 400, 200, 100, 500) \
-            .back() \
+            .touch('drag', {
+              'fromX': 200,
+              'fromY': 400,
+              'toX': 200,
+              'toY': 100,
+              'steps': 50
+            })
+
+        time.sleep(1)
+
+        self.driver \
+            .touch('drag', {
+              'fromX': 100,
+              'fromY': 100,
+              'toX': 100,
+              'toY': 400,
+              'steps': 50
+            })
+
+        self.driver \
+            .element_by_name('Alert') \
+            .click()
+
+        time.sleep(1)
+
+        driver \
+            .accept_alert() \
+            .back()
+
+        time.sleep(1)
+
+        self.driver \
+            .element_by_name('Gesture') \
+            .click()
+
+        self.driver \
+            .touch('tap', {
+              'x': 100,
+              'y': 100
+            })
+
+        time.sleep(1)
+
+        self.driver \
+            .touch('doubleTap', {
+              'x': 100,
+              'y': 100
+            })
+
+        time.sleep(1)
+
+        self.driver \
+            .touch('press', {
+              'x': 100,
+              'y': 100,
+              'steps': 100
+            })
+
+        time.sleep(1)
+
+        self.driver \
+            .element_by_id('com.github.android_app_bootstrap:id/info') \
+            .touch('pinch', {
+              'percent': 200,
+              'steps': 200
+            })
+
+        time.sleep(1)
+
+        self.driver \
+            .touch('drag', {
+              'fromX': 100,
+              'fromY': 100,
+              'toX': 100,
+              'toY': 600,
+              'steps': 100
+            })
+
+    def test_04_webview(self):
+        self.driver \
             .element_by_name('Webview') \
             .click()
 
@@ -70,16 +147,16 @@ class MacacaTest(unittest.TestCase):
 
         switch_to_webview(self.driver) \
             .element_by_id('pushView') \
-            .tap()
+            .touch('tap')
 
         switch_to_webview(self.driver) \
             .element_by_id('popView') \
-            .tap()
+            .touch('tap')
 
-    def test_04_web(self):
+    def test_05_web(self):
         switch_to_native(self.driver) \
             .element_by_name('Baidu') \
-            .tap()
+            .touch('tap')
 
         time.sleep(3)
         self.driver.save_screenshot("./baidu.png")
@@ -90,9 +167,9 @@ class MacacaTest(unittest.TestCase):
 
         self.driver \
             .element_by_id('index-bn') \
-            .tap()
+            .touch('tap')
 
-    def test_05_logout(self):
+    def test_06_logout(self):
         switch_to_native(self.driver) \
             .element_by_name('PERSONAL') \
             .click()
