@@ -1,19 +1,112 @@
-language: python
-sudo: false
-python:
-  - "3.5"
-addons:
-  apt:
-    packages:
-      - xvfb
-install:
-  - export DISPLAY=':99.0'
-  - Xvfb :99 -screen 0 1366x768x24 > /dev/null 2>&1 &
-  - nvm install v5
-  - nvm use v5
-  - npm install -g macaca-cli macaca-electron
-  - pip3 install -r requirements.txt
-script:
-  - macaca server &
-  - sleep 5
-  - python tests/macaca-desktop-sample.test.py
+os:
+  - osx
+  - linux
+env:
+  - TEST_SUITE=ios
+  - TEST_SUITE=android
+  - TEST_SUITE=pc-browser
+matrix:
+    fast_finish: true
+    exclude:
+      - os: osx
+        env: TEST_SUITE=ios
+      - os: osx
+        env: TEST_SUITE=android
+      - os: osx
+        env: TEST_SUITE=pc-browser
+      - os: linux
+        env: TEST_SUITE=ios
+      - os: linux
+        env: TEST_SUITE=android
+      - os: linux
+        env: TEST_SUITE=pc-browser
+    include:
+      - os: osx
+        env: TEST_SUITE=ios
+        osx_image: xcode8
+        language: generic
+        before_install:
+          - brew update
+          - brew install nvm
+          - source $(brew --prefix nvm)/nvm.sh
+          - brew install python3
+          - pip install virtualenv
+          - virtualenv env -p python3
+          - source env/bin/activate
+          - brew install ios-webkit-debug-proxy
+        install:
+          - echo Hello Macaca!
+          - nvm install 7
+          - nvm use 7
+          - npm install -g macaca-cli macaca-ios
+          - pip install -r requirements.txt
+        script:
+          - macaca server --verbose &
+          - sleep 10
+          - python tests/macaca-ios-sample.test.py
+      - os: linux
+        env: TEST_SUITE=android
+        jdk: openjdk7
+        language: android
+        android:
+          components:
+            - build-tools-23.0.2
+            - android-23
+            - extra-android-m2repository
+            - extra-android-support
+        sudo: required
+        addons:
+          apt:
+            sources:
+              - deadsnakes
+            packages:
+              - python3.5
+        before_install:
+          - export CHROME_BIN=chromium-browser
+          - export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+          - export ANDROID_HOME=/usr/local/android-sdk
+          - echo yes | android update sdk --all --filter build-tools-23.0.2 --no-ui --force
+          - export DISPLAY=:99.0
+          - sh -e /etc/init.d/xvfb start
+        before_script:
+          - echo no | android create avd --force -n test -t android-19 --abi armeabi-v7a
+          - emulator -avd test -no-audio -no-window &
+          - android-wait-for-emulator
+          - adb shell input keyevent 82 &
+        install:
+          - echo Hello Macaca!
+          - nvm install 7
+          - nvm use 7
+          - npm install -g macaca-cli macaca-android
+          - pip install virtualenv
+          - virtualenv env -p python3.5
+          - source env/bin/activate
+          - pip install -r requirements.txt
+        script:
+          - macaca server --verbose &
+          - sleep 10
+          - python3 tests/macaca-android-sample.test.py
+      - os: linux
+        env:
+          - TEST_SUITE=pc-browser
+        language: python
+        sudo: false
+        python: "3.5"
+        addons:
+          apt:
+            packages:
+              - xvfb
+        before_install:
+          - . $HOME/.nvm/nvm.sh
+          - export DISPLAY=':99.0'
+          - Xvfb :99 -screen 0 1366x768x24 > /dev/null 2>&1 &
+        install:
+          - echo Hello Macaca!
+          - nvm install 7
+          - nvm use 7
+          - npm install -g macaca-cli macaca-electron
+          - pip install -r requirements.txt
+        script:
+          - macaca server --verbose &
+          - sleep 10
+          - python3 tests/macaca-desktop-sample.test.py
