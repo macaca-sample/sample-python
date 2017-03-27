@@ -16,4 +16,4 @@ install:
 script:
   - macaca server &
   - sleep 5
-  - python macaca-desktop-sample.test.py
+  - python tests/macaca-desktop-sample.test.py
