@@ -1,3 +1,5 @@
+#coding:utf-8
+
 import unittest
 import os
 import time
@@ -84,7 +86,7 @@ class MacacaTest(unittest.TestCase):
 
         time.sleep(1)
 
-        driver \
+        self.driver \
             .accept_alert() \
             .back()
 
@@ -137,9 +139,17 @@ class MacacaTest(unittest.TestCase):
               'steps': 100
             })
 
+        time.sleep(1)
+
+        self.driver.back()
+
+        time.sleep(1)
+
+        self.driver.back()
+
     def test_04_webview(self):
         self.driver \
-            .element_by_name('Webview') \
+            .wait_for_element_by_name('Webview') \
             .click()
 
         time.sleep(3)

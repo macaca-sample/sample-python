@@ -1,7 +1,10 @@
+#coding:utf-8
+
 import unittest
 import os
 import time
 from macaca import WebDriver
+from retrying import retry
 
 desired_caps = {
     'platformName': 'iOS',
@@ -29,11 +32,17 @@ class MacacaTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = WebDriver(desired_caps, server_url)
-        cls.driver.init()
+        cls.initDriver()
 
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
+
+    @classmethod
+    @retry
+    def initDriver(cls):
+        print("Retry connecting server...")
+        cls.driver.init()
 
     def test_01_login(self):
         self.driver \
@@ -43,6 +52,10 @@ class MacacaTest(unittest.TestCase):
         self.driver \
             .element_by_xpath('//XCUIElementTypeSecureTextField[1]') \
             .send_keys('111111') \
+
+        self.driver \
+            .element_by_name('Done') \
+            .click()
 
         self.driver \
             .element_by_name('Login') \
@@ -77,16 +90,6 @@ class MacacaTest(unittest.TestCase):
               'toY': 400,
               'duration': 2
             })
-
-        self.driver \
-            .element_by_name('Alert') \
-            .click()
-
-        time.sleep(1)
-
-        driver \
-            .accept_alert() \
-            .back()
 
         time.sleep(1)
 
