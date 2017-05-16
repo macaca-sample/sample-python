@@ -11,6 +11,7 @@ desired_caps = {
     'platformVersion': '10.0',
     'deviceName': 'iPhone 5s',
     'app': 'https://npmcdn.com/ios-app-bootstrap@latest/build/ios-app-bootstrap.zip',
+    'reuse': 1
 }
 
 server_url = {
@@ -99,14 +100,6 @@ class MacacaTest(unittest.TestCase):
 
         self.driver \
             .touch('tap', {
-              'x': 100,
-              'y': 100
-            })
-
-        time.sleep(1)
-
-        self.driver \
-            .touch('doubleTap', {
               'x': 100,
               'y': 100
             })
