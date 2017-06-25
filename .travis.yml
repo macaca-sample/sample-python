@@ -27,13 +27,14 @@ matrix:
         language: generic
         before_install:
           - brew update
-          - brew install nvm
+          - brew install carthage > /dev/null 2>&1
+          - brew install ios-webkit-debug-proxy > /dev/null 2>&1
+          - brew install nvm > /dev/null 2>&1
           - source $(brew --prefix nvm)/nvm.sh
           - brew install python3
           - pip install virtualenv
           - virtualenv env -p python3
           - source env/bin/activate
-          - brew install ios-webkit-debug-proxy
         install:
           - echo Hello Macaca!
           - nvm install 7
