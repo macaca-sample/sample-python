@@ -30,16 +30,16 @@ matrix:
           - brew install carthage > /dev/null 2>&1
           - brew install ios-webkit-debug-proxy > /dev/null 2>&1
           - brew install nvm > /dev/null 2>&1
-          - source $(brew --prefix nvm)/nvm.sh
           - brew install python3
           - pip install virtualenv
           - virtualenv env -p python3
           - source env/bin/activate
         install:
           - echo Hello Macaca!
+          - source $(brew --prefix nvm)/nvm.sh
           - nvm install 7
-          - nvm use 7
-          - npm install -g macaca-cli macaca-ios
+          - npm i ios-simulator macaca-cli macaca-ios -g
+          - open -a Simulator --args -CurrentDeviceUDID `ios-simulator -n 'iPhone 6s'` > /dev/null 2>&1
           - pip install -r requirements.txt
         script:
           - macaca server --verbose &
@@ -75,14 +75,14 @@ matrix:
           - unzip gradle-3.3-all.zip > /dev/null
           - export GRADLE_HOME=$PWD/gradle-3.3
           - export PATH=$GRADLE_HOME/bin:$PATH
+          - . $HOME/.nvm/nvm.sh
+          - nvm install 7
           - echo no | android create avd --force -n test -t android-21 --abi armeabi-v7a
           - emulator -avd test -no-audio -no-window &
           - android-wait-for-emulator
           - adb shell input keyevent 82 &
         install:
           - echo Hello Macaca!
-          - nvm install 7
-          - nvm use 7
           - npm install -g macaca-cli macaca-android
           - pip install virtualenv
           - virtualenv env -p python3.5
