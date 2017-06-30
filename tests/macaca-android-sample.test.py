@@ -157,16 +157,16 @@ class MacacaTest(unittest.TestCase):
 
         switch_to_webview(self.driver) \
             .element_by_id('pushView') \
-            .touch('tap')
+            .click()
 
         switch_to_webview(self.driver) \
             .element_by_id('popView') \
-            .touch('tap')
+            .click()
 
     def test_05_web(self):
         switch_to_native(self.driver) \
             .element_by_name('Baidu') \
-            .touch('tap')
+            .click()
 
         time.sleep(3)
         self.driver.save_screenshot("./baidu.png")
@@ -177,7 +177,7 @@ class MacacaTest(unittest.TestCase):
 
         self.driver \
             .element_by_id('index-bn') \
-            .touch('tap')
+            .click()
 
     def test_06_logout(self):
         switch_to_native(self.driver) \
