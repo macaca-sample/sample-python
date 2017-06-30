@@ -52,7 +52,7 @@ class MacacaTest(unittest.TestCase):
 
     def test_02_scroll_tableview(self):
         self.driver              \
-            .element_by_name('HOME') \
+            .element_by_names('HOME')[0] \
             .click()
 
         self.driver             \
@@ -165,7 +165,7 @@ class MacacaTest(unittest.TestCase):
 
     def test_05_web(self):
         switch_to_native(self.driver) \
-            .element_by_name('Baidu') \
+            .elements_by_name('Baidu')[0] \
             .click()
 
         time.sleep(3)
