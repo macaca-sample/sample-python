@@ -68,25 +68,8 @@ class MacacaTest(unittest.TestCase):
             .click()
 
     def test_03_gesture(self):
-        self.driver \
-            .touch('drag', {
-              'fromX': 200,
-              'fromY': 400,
-              'toX': 200,
-              'toY': 100,
-              'steps': 50
-            })
 
-        time.sleep(1)
-
-        self.driver \
-            .touch('drag', {
-              'fromX': 100,
-              'fromY': 100,
-              'toX': 100,
-              'toY': 400,
-              'steps': 50
-            })
+        time.sleep(3)
 
         self.driver \
             .wait_for_element_by_name('Alert') \
