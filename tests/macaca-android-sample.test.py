@@ -8,8 +8,7 @@ from macaca import WebDriver
 desired_caps = {
     'platformName': 'android',
     'app': 'https://npmcdn.com/android-app-bootstrap@latest/android_app_bootstrap/build/outputs/apk/android_app_bootstrap-debug.apk',
-    'reuse': 3
-}
+    }
 
 server_url = {
     'hostname': 'localhost',
@@ -52,7 +51,7 @@ class MacacaTest(unittest.TestCase):
 
     def test_02_scroll_tableview(self):
         self.driver              \
-            .element_by_names('HOME')[0] \
+            .element_by_name('HOME') \
             .click()
 
         self.driver             \
@@ -165,7 +164,7 @@ class MacacaTest(unittest.TestCase):
 
     def test_05_web(self):
         switch_to_native(self.driver) \
-            .elements_by_name('Baidu')[0] \
+            .element_by_name('Baidu') \
             .click()
 
         time.sleep(3)

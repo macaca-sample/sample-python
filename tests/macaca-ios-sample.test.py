@@ -8,10 +8,8 @@ from retrying import retry
 
 desired_caps = {
     'platformName': 'iOS',
-    'platformVersion': '10.0',
     'deviceName': 'iPhone 6s',
     'app': 'https://npmcdn.com/ios-app-bootstrap@latest/build/ios-app-bootstrap.zip',
-    'reuse': 1
 }
 
 server_url = {
