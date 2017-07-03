@@ -69,19 +69,19 @@ class MacacaTest(unittest.TestCase):
 
     def test_03_gesture(self):
 
-        time.sleep(3)
+        time.sleep(5)
 
         self.driver \
             .wait_for_element_by_name('Alert') \
             .click()
 
-        time.sleep(1)
+        time.sleep(5)
 
         self.driver \
             .accept_alert() \
             .back()
 
-        time.sleep(1)
+        time.sleep(5)
 
         self.driver \
             .wait_for_element_by_name('Gesture') \
@@ -93,7 +93,7 @@ class MacacaTest(unittest.TestCase):
               'y': 100
             })
 
-        time.sleep(3)
+        time.sleep(5)
 
         self.driver \
             .touch('doubleTap', {
@@ -101,7 +101,7 @@ class MacacaTest(unittest.TestCase):
               'y': 100
             })
 
-        time.sleep(3)
+        time.sleep(5)
 
         self.driver \
             .touch('press', {
@@ -110,7 +110,7 @@ class MacacaTest(unittest.TestCase):
               'steps': 100
             })
 
-        time.sleep(3)
+        time.sleep(5)
 
         self.driver \
             .wait_for_element_by_xpath('//*[@resource-id="com.github.android_app_bootstrap:id/info"]') \
@@ -120,7 +120,7 @@ class MacacaTest(unittest.TestCase):
               'steps': 200
             })
 
-        time.sleep(3)
+        time.sleep(5)
 
         self.driver \
             .touch('drag', {
@@ -131,11 +131,11 @@ class MacacaTest(unittest.TestCase):
               'steps': 100
             })
 
-        time.sleep(1)
+        time.sleep(5)
 
         self.driver.back()
 
-        time.sleep(1)
+        time.sleep(5)
 
         self.driver.back()
 
@@ -144,7 +144,7 @@ class MacacaTest(unittest.TestCase):
             .wait_for_element_by_name('Webview') \
             .click()
 
-        time.sleep(3)
+        time.sleep(5)
         self.driver.save_screenshot('./webView.png') # save screen shot
 
         switch_to_webview(self.driver) \
@@ -160,7 +160,7 @@ class MacacaTest(unittest.TestCase):
             .wait_for_element_by_name('Baidu') \
             .click()
 
-        time.sleep(3)
+        time.sleep(5)
         self.driver.save_screenshot("./baidu.png")
 
         switch_to_webview(self.driver) \
