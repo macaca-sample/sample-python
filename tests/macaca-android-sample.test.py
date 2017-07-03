@@ -4,6 +4,8 @@ import unittest
 import os
 import time
 from macaca import WebDriver
+from macaca import Keys
+from retrying import retry
 
 desired_caps = {
     'platformName': 'android',
@@ -29,24 +31,31 @@ class MacacaTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.driver = WebDriver(desired_caps, server_url)
-        cls.driver.init()
+        cls.initDriver()
 
     @classmethod
     def tearDownClass(cls):
         cls.driver.quit()
 
+    @classmethod
+    @retry
+    def initDriver(cls):
+        print("Retry connecting server...")
+        cls.driver.init()
+
     def test_01_login(self):
-        self.driver \
-            .element_by_xpath('//android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.FrameLayout[1]/android.widget.LinearLayout[1]/android.widget.RelativeLayout[1]/android.widget.EditText[1]') \
+        el = self.driver \
+            .elements_by_class_name('android.widget.EditText')[0] \
             .send_keys('中文+Test+12345678')   \
 
-        els = self.driver \
-            .elements_by_class_name('android.widget.EditText')
+        el = self.driver \
+            .elements_by_class_name('android.widget.EditText')[1] \
+            .send_keys('111111')
 
-        els[1].send_keys('111111')
+        self.driver.keys(Keys.ENTER.value + Keys.ESCAPE.value)
 
         self.driver \
-            .wait_for_element_by_name('Login') \
+            .element_by_name('Login') \
             .click()
 
     def test_02_scroll_tableview(self):
