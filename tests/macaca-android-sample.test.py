@@ -52,7 +52,7 @@ class MacacaTest(unittest.TestCase):
             .elements_by_class_name('android.widget.EditText')[1] \
             .send_keys('111111')
 
-        self.driver.keys(Keys.ENTER.value + Keys.ESCAPE.value)
+        # self.driver.keys(Keys.ENTER.value + Keys.ESCAPE.value)
 
         self.driver \
             .element_by_name('Login') \
