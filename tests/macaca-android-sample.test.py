@@ -46,16 +46,16 @@ class MacacaTest(unittest.TestCase):
         els[1].send_keys('111111')
 
         self.driver \
-            .element_by_name('Login') \
+            .wait_for_element_by_name('Login') \
             .click()
 
     def test_02_scroll_tableview(self):
         self.driver              \
-            .element_by_name('HOME') \
+            .wait_for_element_by_name('HOME') \
             .click()
 
         self.driver             \
-            .element_by_name('list') \
+            .wait_for_element_by_name('list') \
             .click()
 
     def test_03_gesture(self):
@@ -80,7 +80,7 @@ class MacacaTest(unittest.TestCase):
             })
 
         self.driver \
-            .element_by_name('Alert') \
+            .wait_for_element_by_name('Alert') \
             .click()
 
         time.sleep(1)
@@ -92,7 +92,7 @@ class MacacaTest(unittest.TestCase):
         time.sleep(1)
 
         self.driver \
-            .element_by_name('Gesture') \
+            .wait_for_element_by_name('Gesture') \
             .click()
 
         self.driver \
@@ -164,7 +164,7 @@ class MacacaTest(unittest.TestCase):
 
     def test_05_web(self):
         switch_to_native(self.driver) \
-            .element_by_name('Baidu') \
+            .wait_for_element_by_name('Baidu') \
             .click()
 
         time.sleep(3)
@@ -180,10 +180,10 @@ class MacacaTest(unittest.TestCase):
 
     def test_06_logout(self):
         switch_to_native(self.driver) \
-            .element_by_name('PERSONAL') \
+            .wait_for_element_by_name('PERSONAL') \
             .click()
 
-        self.driver.element_by_name('Logout') \
+        self.driver.wait_for_element_by_name('Logout') \
             .click()
 
 if __name__ == '__main__':
