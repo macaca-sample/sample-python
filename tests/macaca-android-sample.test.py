@@ -113,16 +113,6 @@ class MacacaTest(unittest.TestCase):
         time.sleep(5)
 
         self.driver \
-            .wait_for_element_by_xpath('//*[@resource-id="com.github.android_app_bootstrap:id/info"]') \
-            .touch('pinch', {
-              'direction': 'in',
-              'percent': 0.2,
-              'steps': 200
-            })
-
-        time.sleep(5)
-
-        self.driver \
             .touch('drag', {
               'fromX': 100,
               'fromY': 100,
