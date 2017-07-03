@@ -93,7 +93,7 @@ class MacacaTest(unittest.TestCase):
               'y': 100
             })
 
-        time.sleep(1)
+        time.sleep(3)
 
         self.driver \
             .touch('doubleTap', {
@@ -101,7 +101,7 @@ class MacacaTest(unittest.TestCase):
               'y': 100
             })
 
-        time.sleep(1)
+        time.sleep(3)
 
         self.driver \
             .touch('press', {
@@ -110,16 +110,17 @@ class MacacaTest(unittest.TestCase):
               'steps': 100
             })
 
-        time.sleep(1)
+        time.sleep(3)
 
         self.driver \
-            .element_by_id('com.github.android_app_bootstrap:id/info') \
+            .wait_for_element_by_xpath('//*[@resource-id="com.github.android_app_bootstrap:id/info"]') \
             .touch('pinch', {
-              'percent': 200,
+              'direction': 'in',
+              'percent': 0.2,
               'steps': 200
             })
 
-        time.sleep(1)
+        time.sleep(3)
 
         self.driver \
             .touch('drag', {
@@ -147,11 +148,11 @@ class MacacaTest(unittest.TestCase):
         self.driver.save_screenshot('./webView.png') # save screen shot
 
         switch_to_webview(self.driver) \
-            .element_by_id('pushView') \
+            .wait_for_element_by_id('pushView') \
             .click()
 
         switch_to_webview(self.driver) \
-            .element_by_id('popView') \
+            .wait_for_element_by_id('popView') \
             .click()
 
     def test_05_web(self):
@@ -163,11 +164,11 @@ class MacacaTest(unittest.TestCase):
         self.driver.save_screenshot("./baidu.png")
 
         switch_to_webview(self.driver) \
-            .element_by_id('index-kw') \
+            .wait_for_element_by_id('index-kw') \
             .send_keys('macaca')
 
         self.driver \
-            .element_by_id('index-bn') \
+            .wait_for_element_by_id('index-bn') \
             .click()
 
     def test_06_logout(self):
