@@ -9,14 +9,14 @@
 
 ## Install
 
-```shell
+``` bash
 $ npm install -g macaca-cli macaca-electron
 $ pip install -r requirements.txt
 ```
 
 ## Run test
 
-```shell
+``` bash
 $ macaca server
 $ python tests/macaca-desktop-sample.test.py
 ```
