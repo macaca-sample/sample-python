@@ -23,7 +23,7 @@ matrix:
     include:
       - os: osx
         env: TEST_SUITE=ios
-        osx_image: xcode8.3
+        osx_image: xcode9
         language: generic
         before_install:
           - brew update
@@ -99,7 +99,7 @@ matrix:
           - TEST_SUITE=pc-browser
         language: python
         sudo: false
-        python: "3.5"
+        python: 3.5
         addons:
           apt:
             packages:
