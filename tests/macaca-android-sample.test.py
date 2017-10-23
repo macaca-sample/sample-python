@@ -52,6 +52,7 @@ class MacacaTest(unittest.TestCase):
             .elements_by_class_name('android.widget.EditText')[1] \
             .send_keys('111111')
 
+        time.sleep(1)
         # self.driver.keys(Keys.ENTER.value + Keys.ESCAPE.value)
 
         self.driver \
@@ -78,14 +79,20 @@ class MacacaTest(unittest.TestCase):
         time.sleep(5)
 
         self.driver \
-            .accept_alert() \
+            .accept_alert()
+
+        time.sleep(3)
+
+        self.driver \
             .back()
 
-        time.sleep(5)
+        time.sleep(3)
 
         self.driver \
             .wait_for_element_by_name('Gesture') \
             .click()
+
+        time.sleep(3)
 
         self.driver \
             .touch('tap', {
