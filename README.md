@@ -10,15 +10,17 @@
 ## Install
 
 ``` bash
-$ npm install -g macaca-cli macaca-electron
+$ npm install -g macaca-cli macaca-electron macaca-ios macaca-android
 $ pip install -r requirements.txt
 ```
 
 ## Run test
 
 ``` bash
-$ macaca server
+$ macaca server --verbose
 $ python tests/macaca-desktop-sample.test.py
+$ python tests/macaca-ios-sample.test.py
+$ python tests/macaca-android-sample.test.py
 ```
 
 ## License

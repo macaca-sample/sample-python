@@ -12,6 +12,7 @@ desired_caps = {
     'app': 'https://npmcdn.com/ios-app-bootstrap@latest/build/ios-app-bootstrap.zip',
 }
 
+
 server_url = {
     'hostname': 'localhost',
     'port': 3456
@@ -52,9 +53,10 @@ class MacacaTest(unittest.TestCase):
             .element_by_xpath('//XCUIElementTypeSecureTextField[1]') \
             .send_keys('111111') \
 
+        time.sleep(1)
+
         self.driver \
-            .element_by_name('Done') \
-            .click()
+            .send_keys('\n')
 
         self.driver \
             .element_by_name('Login') \
